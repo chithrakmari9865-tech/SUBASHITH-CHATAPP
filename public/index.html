@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SL Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- උඩින් වීඩියෝවක් දාන්න පුළුවන් කොටස (Header / Tabline Video) -->
+    <div class="header-video-container">
+        <video autoplay muted loop class="header-video">
+            <!-- 'your-video.mp4' කියන තැනට ඔයාගේ වීඩියෝ එකේ නම දෙන්න (වීඩියෝ එක public ෆෝල්ඩර් එකට දාන්න) -->
+            <source src="your-video.mp4" type="video/mp4">
+            ඔබේ බ්‍රව්සර් එක වීඩියෝ සඳහා සහය නොදක්වයි.
+        </video>
+        <div class="header-overlay">
+            <!-- ලෝගෝ එක සහ නම -->
+            <div class="brand-section">
+                <!-- 'logo.png' කියන තැනට ඔයාගේ ලෝගෝ එකේ නම දෙන්න -->
+                <img src="logo.png" alt="Logo" class="app-logo">
+                <h1>SL Chat App</h1>
+            </div>
+            <p class="welcome-text">සාදරයෙන් පිළිගනිමු! <span class="powered-by">Powered by සුභාශිත්</span></p>
+        </div>
+    </div>
+
+    <!-- චැට් මැදිරි ප්‍රදේශය -->
+    <div class="chat-container">
+        <ul id="messages"></ul>
+        
+        <form id="form" action="">
+            <!-- පරිශීලකයාගේ නම සහ ඩිපී (DP) සෙටප් එක -->
+            <div class="user-info-inputs">
+                <input id="username" placeholder="ඔබේ නම..." autocomplete="off" required />
+                <!-- 'dp.jpg' කියන තැනට ඔයාගේ ඩිපී එක දෙන්න පුළුවන්, නැත්නම් ලින්ක් එකක් දෙන්න පුළුවන් -->
+                <input id="dp-url" placeholder="DP Image Link එක මෙතැනට දාන්න" value="https://via.placeholder.com/40" />
+            </div>
+            <div class="input-row">
+                <input id="input" autocomplete="off" placeholder="መልዕක්තයක් ලියන්න..." required />
+                <button>යවන්න</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const usernameInput = document.getElementById('username');
+        const dpUrlInput = document.getElementById('dp-url');
+        const messages = document.getElementById('messages');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+                const messageData = {
+                    name: usernameInput.value || 'නම නැත',
+                    dp: dpUrlInput.value || 'https://via.placeholder.com/40',
+                    text: input.value
+                };
+                socket.emit('chat message', messageData);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', function(msg) {
+            const item = document.createElement('li');
+            item.innerHTML = `
+                <div class="message-card">
+                    <img src="${msg.dp}" alt="DP" class="user-dp">
+                    <div class="message-content">
+                        <span class="msg-user">${msg.name}</span>
+                        <p class="msg-text">${msg.text}</p>
+                    </div>
+                </div>
+            `;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
+</body>
+</html>

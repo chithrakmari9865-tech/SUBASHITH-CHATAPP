@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* උඩින් වීඩියෝව පෙන්වන කොටස */
+.header-video-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 3px solid #ffcc00;
+}
+
+.header-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(40%);
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #ffcc00;
+    object-fit: cover;
+}
+
+.header-overlay h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #ffcc00;
+}
+
+.welcome-text {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.powered-by {
+    color: #00ffcc;
+    font-weight: bold;
+}
+
+/* චැට් ප්‍රදේශය */
+.chat-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 250px);
+}
+
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#messages li {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+}
+
+.message-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user-dp {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ffcc00;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.msg-user {
+    font-size: 12px;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+.msg-text {
+    margin: 3px 0 0 0;
+    font-size: 14px;
+    color: #ffffff;
+    word-break: break-all;
+}
+
+/* මැසේජ් ටයිප් කරන කොටස */
+#form {
+    background: #181818;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.user-info-inputs {
+    display: flex;
+    gap: 8px;
+}
+
+.user-info-inputs input {
+    flex: 1;
+    padding: 6px 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+#input {
+    flex-grow: 1;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+#form button {
+    background: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #121212;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#form button:hover {
+    background: #e6b800;
+}
